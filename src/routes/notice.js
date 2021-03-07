@@ -9,7 +9,6 @@ router.get('/notice/*', async (req, res) => {
         const fileStream = await ims.getNotice(link);
         const fileDispos = fileStream.headers['content-disposition'];
         const fileName = fileDispos.substring( fileDispos.indexOf('filename=') + 10, fileDispos.length - 2);
-        console.log(fileName)
         res.attachment(fileName);
         fileStream.data.pipe(res);
     } catch (e) {
